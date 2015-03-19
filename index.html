@@ -1,14 +1,53 @@
-<!doctype HTML>
-<html lang ="eng">
+<!doctype html>
+<html lang="en">
 <head>
-<meta charset ="utf-8">
-<title>Github page</title>
+    <meta charset="UTF-8">
+    <title>My Pages</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
-<h1> This is a github page</h1>
-<div id="container"></div>	
-	
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="//soulwire.github.io/sketch.js/js/sketch.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.13.1/TweenMax.min.js"></script>
+<div class="container">
+    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+    <h1 style="font-size:44px">My Page <small>Weibo test</small></h1>
+
+    <div class="alert alert-warning alert-dismissable" display="block" data-bind="visible: showAlert">
+        <span data-bind="text: alertText"></span>
+        <button type="button" class="close" aria-hidden="true" data-bind="click: close">&times;</button>
+    </div>
+
+    <!--alert-success alert-warning-->
+    <div class="row" style="padding: 50px 20px 40px">
+        <div class="col-md-8">
+            <textarea class="textarea" placeholder="Enter text ..." style="width: 100%; height: 150px;max-width: 100%; max-height: 300px" data-bind="value:textarea, valueUpdate: 'afterkeydown'"></textarea>
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary btn-success disabled" data-bind="click:post, css: enablebtn">Post</button>
+        </div>
+    </div>
+</div>
+
+<!--display input content-->
+<div class="modal-footer" style="margin-left: 50px; margin-right: 50px;position: relative; padding: 45px 15px 15px; letter-spacing: 1px">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Weibo Dsecription</th>
+        </tr>
+        </thead>
+        <tbody data-bind="foreach: weibos">
+        <tr>
+            <th scope="row" data-bind="text: index"></th>
+            <td class="text-left" data-bind="text: weibo().description"></td>
+        </tr>
+        </tbody>
+</div>
+
+<script type="text/javascript" src="js/knockout-3.3.0.js"></script>
+<script type="text/javascript" src="js/weiboModel.js"></script>
+
+<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
 </body>
+</html>
