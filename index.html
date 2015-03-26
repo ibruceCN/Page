@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
-<div class="container">
+<div class="container col-md-6 col-md-offset-3 bg-info">
     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
     <h1 style="font-size:44px">My Page <small>Weibo test</small></h1>
 
@@ -27,23 +27,26 @@
 </div>
 
 <!--display input content-->
-<div class="modal-footer" style="margin-left: 50px; margin-right: 50px;position: relative; padding: 45px 15px 15px; letter-spacing: 1px">
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <!--<th>#</th>-->
-            <th>Weibo Dsecription</th>
-        </tr>
-        </thead>
-        <tbody data-bind="foreach: weibos">
-        <tr>
-            <!--<th scope="row" data-bind="text: index"></th>-->
-            <td class="text-left">
-                <h3 data-bind="text: author"></h3>
-                <p data-bind="text: description"></p>
-            </td>
-        </tr>
-        </tbody>
+<div  class="container col-md-6 col-md-offset-3">
+            <label data-bind="if: weibos().length>0 ">Weibo Dsecription</label>
+        <ul class="list-unstyled" data-bind="foreach: weibos">
+        <li>
+            <section class="container-fluid">
+                <!-- content -->
+                <div class="row">
+                    <h3  class="text-left col-md-4"  data-bind="text: author"></h3>
+                </div>
+                <div class="row">
+                    <p class="text-left col-md-8" data-bind="text: description"></p>
+                </div>
+                <div class="text-right row">
+                    <a href="#" role="button">&#32;Link&#32;</a>&#124;
+                    <a href="#" role="button">&#32;Link&#32;</a>&#124;
+                    <a href="#" role="button">&#32;Link&#32;</a>
+                </div>
+            </section>
+        </li>
+        </ul>
 </div>
 
 <script type="text/javascript" src="js/knockout-3.3.0.js"></script>
