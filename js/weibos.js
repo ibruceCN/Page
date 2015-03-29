@@ -13,7 +13,9 @@ var Weibos = (function ($, undefined) {
         newWeibo = {
             id:this.weibos().length,
             author:weibo.author(),
-            content: weibo.content().trim()
+            content: weibo.content().trim(),
+            hasComments:ko.observableArray([]),
+            isComment:ko.observable(false)
         }
         this.weibos.push(newWeibo);
     };
@@ -22,8 +24,20 @@ var Weibos = (function ($, undefined) {
         var weibos = $.grep(this.weibos(), function(data, index) {
             return data.id != weibo.id;
         });
-        debugger
         this.weibos(weibos);
+    };
+
+    cls.prototype._addComment = function (weibo, comments, author) {
+        var resultWeibo = $.grep(this.weibos(), function(data){ return data.id == weibo.id; });
+        var newComment = new Weibo();
+        newComment = {
+            id:resultWeibo[0].hasComments.length,
+            author:author,
+            content: comments,
+            replayID:weibo.id,
+            hasComments:ko.observableArray([])
+        }
+        resultWeibo[0].hasComments.push(newComment);
     };
 
     return cls;

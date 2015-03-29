@@ -15,3 +15,16 @@
 .padding-center {
     padding: 50px 20px 40px;
 }
+
+.comment-content {
+    border-top: 1px solid #262626;
+    padding: 20px 10px 1px;
+}
+
+.comment-alert {
+    padding:5px;
+    margin-bottom: 3px;
+    margin: 10px;
+    background-color: #843534;
+    color: #fff;
+}

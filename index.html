@@ -13,7 +13,7 @@
         <h1>My Page <small>Weibo test</small></h1>
     </div>
     <div>
-        <div  data-bind="with: modal">
+        <div data-bind="with: modal">
             <div data-bind="if: (content().trim().length > 140)">
                 <div class="alert alert-warning alert-dismissable" display="block">
                     <span data-bind="text: (content().trim().length > 140) ? 'The posts should not more than 140 characters.': 'You forget input some characters'"></span>
@@ -37,30 +37,53 @@
 
 <!--display input content-->
 <div  class="container col-md-6 col-md-offset-3" data-bind="with: list">
-            <label data-bind="if: weibos().length>0 ">Weibo Dsecription</label>
-        <ul class="list-unstyled" data-bind="foreach: weibos">
+    <label data-bind="if: weibos().length>0 ">Weibo Dsecription</label>
+    <ul class="list-unstyled" data-bind="foreach: weibos">
         <li>
             <section class="container-fluid model-content">
                 <!-- content -->
                 <div class="text-right row">
+                    <p data-bind="text: hasComments().length"></p>
                     <a href="#" role="button" data-bind="click: $parent.remove">
                         <span class="glyphicon glyphicon-trash"></span>
                     </a>
                 </div>
                 <div class="row">
-                    <h3  class="text-left col-md-4"  data-bind="text: author"></h3>
+                    <h3  class="text-left col-md-4 text-info"  data-bind="text: author"></h3>
                 </div>
                 <div class="row">
                     <p class="text-left col-md-8" data-bind="text: content"></p>
                 </div>
                 <div class="text-right row">
-                    <a href="#" role="button" data-bind="click: $parent.comment">
-                        <span class="glyphicon glyphicon-comment"></span>
+                    <a href="#" role="button" data-bind="click: $parent.comments">
+                        <span class="glyphicon glyphicon-comment"></span>Comments
                     </a>
+                    <a href="#" role="button" class="col-md-offset-1">
+                        <span class="glyphicon glyphicon-comment"></span>Reply Comments
+                    </a>
+                </div>
+                <div data-bind="if: isComment()">
+                    <div class="row comment-content">
+                        <input type="text" class="col-md-8 col-md-offset-0" type="text" placeholder="Input something…" data-bind="value: $parent.commentContent">
+                        <button type="submit" class="btn col-md-offset-1 btn-success" data-bind="click: $parent.addComment, css: {'disabled': !(($parent.commentContent().trim().length <= 140) && ($parent.commentContent().trim().length > 0))}">Comment</button>
+                        <div class=" " data-bind="if: ($parent.commentContent().trim().length > 140)">
+                            <div class="alert alert-warning alert-dismissable comment-alert" display="block">
+                                <span data-bind="text: ($parent.commentContent().trim().length > 140) ? 'The posts should not more than 140 characters.': 'You forget input some characters'"></span>
+                            </div>
+                        </div>
+                    </div>
+                <div>
+                    <ul class="list-unstyled" data-bind="foreach: hasComments">
+                        <li class="model-content">
+                            <p class="text-info" data-bind="text: author"></p>
+                            <p data-bind="text: content"></p>
+                        </li>
+                    </ul>
+                </div>
                 </div>
             </section>
         </li>
-        </ul>
+    </ul>
 </div>
 
 <script type="text/javascript" src="js/knockout-3.3.0.js"></script>

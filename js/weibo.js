@@ -7,6 +7,9 @@ var Weibo = (function ($, undefined) {
         self.id = 0;
         self.author = ko.observable('Bruce');
         self.content = ko.observable('');
+        self.replayID = 0;
+        self.hasComments = ko.observableArray([]);
+        self.isComment = ko.observable(false);
     }
 
     return cls;

@@ -10,7 +10,10 @@ var Page = function($, undefined){
 
     page.modal.post = post;
     page.list.remove = remove;
-    page.list.comment = remove;
+    page.list.comments = comments;
+    page.list.comment = ko.observable(false);
+    page.list.commentContent = ko.observable('');
+    page.list.addComment = addComment;
 
     function post (model) {
         page.list._add(model);
@@ -18,15 +21,29 @@ var Page = function($, undefined){
     }
 
     function clear () {
-        page.modal.author('');
         page.modal.content('');
+        page.list.comment(false);
+        page.list.commentContent('')
+
     }
 
     function remove (model) {
-        debugger
         page.list._remove(model);
     }
 
+    function comments (model) {
+        debugger
+        if(model.isComment()){
+            model.isComment(false);
+        }else {
+            model.isComment(true);
+        }
+    }
+
+    function addComment (model) {
+        page.list._addComment(model, page.list.commentContent().trim(), 'Lee');
+        page.list.commentContent('');
+    }
 
     ko.applyBindings(page);
 }(jQuery)
