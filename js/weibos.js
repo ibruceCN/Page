@@ -8,13 +8,22 @@ var Weibos = (function ($, undefined) {
         self.weibos = ko.observableArray([]);
     }
 
-    cls.prototype.add = function (weibo) {
+    cls.prototype._add = function (weibo) {
         var newWeibo = new Weibo();
         newWeibo = {
+            id:this.weibos().length,
             author:weibo.author(),
             content: weibo.content().trim()
         }
         this.weibos.push(newWeibo);
+    };
+
+    cls.prototype._remove = function (weibo) {
+        var weibos = $.grep(this.weibos(), function(data, index) {
+            return data.id != weibo.id;
+        });
+        debugger
+        this.weibos(weibos);
     };
 
     return cls;

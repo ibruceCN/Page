@@ -9,9 +9,11 @@ var Page = function($, undefined){
     };
 
     page.modal.post = post;
+    page.list.remove = remove;
+    page.list.comment = remove;
 
     function post (model) {
-        page.list.add(model);
+        page.list._add(model);
         clear();
     }
 
@@ -20,36 +22,11 @@ var Page = function($, undefined){
         page.modal.content('');
     }
 
+    function remove (model) {
+        debugger
+        page.list._remove(model);
+    }
+
 
     ko.applyBindings(page);
 }(jQuery)
-
-//var viewModel = {
-//    alert : ko.observable(false),
-//    weibo: {
-//        description : ko.observable(''),
-//        author: ko.observable('Bruce')
-//    },
-//    weibos : ko.observableArray([]),
-//
-//    close : function() {
-//        this.alert(false);
-//    },
-//
-//    post: function () {
-//        if(this.weibo.description().trim().length > 0 && this.weibo.description().trim().length <= 140) {
-//            var cloneModel = {
-//                author: this.weibo.author(),
-//                description: this.weibo.description().trim()
-//            };
-//            this.weibos.push(cloneModel);
-//            this.alert(false);
-//            this.weibo.description('');
-//        }else
-//        {
-//            this.alert(true);
-//        }
-//    }
-//}
-//
-//ko.applyBindings(viewModel);
